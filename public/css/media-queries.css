@@ -1,0 +1,146 @@
+@media (max-width: 991px) {
+    .header-buttons {
+        padding-left: 0;
+    }
+    .flow-section-list {
+        display: block;
+    }
+    .flow-section {
+        margin-bottom: 2rem;   
+     }
+    .banner-main-title {
+        font-size: 30px;
+    }
+    .mobile-view{
+        display: block;
+    }
+    .desk-view{
+        display: none;
+    }
+    .testimonial-card{
+        width: 95%;
+        margin: auto;
+    }
+}
+@media (min-width:992px){
+     .mobile-view{
+        display: none;
+    }
+    .desk-view{
+        display: block;
+    }
+}
+@media (max-width: 767px) {
+    .aboutus-banner-section {
+        background: #4640de;
+        padding: 3rem 0;
+    }
+.home-banner-label{
+    margin-bottom: 1.5rem;
+}
+    .desk-about-img {
+        display: none;
+    }
+
+    .banner-section {
+        position: inherit;
+        transform: none;
+    }
+
+    .about-img {
+        margin-top: 3rem;
+    }
+
+    .about-testimony-card {
+        right: 0;
+        top: -186px;
+    }
+
+    .hired-score-card {
+        margin: 1rem auto;
+    }
+
+    .about-testimony-img {
+        position: inherit;
+        left: auto;
+    }
+
+    .testmony-user-img {
+        position: absolute;
+        right: 20px;
+        top: -30px;
+    }
+
+    .more-info {
+        margin-top: 1.5rem;
+    }
+
+    .team-member-details .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-form {
+        margin: 1.5rem auto;
+        max-width: 100%;
+    }
+
+    .location-globe {
+        display: none;
+    }
+
+    .location-section {
+        padding: 1rem 3rem;
+    }
+
+    .contact-address {
+        padding: 0 !important;
+    }
+
+    .location-content {
+        position: inherit;
+        left: 0;
+        top: 0;
+        transform: translate(0, 0);
+        width: auto;
+        height: auto;
+        padding: 1.5rem 1.5rem 0 !important;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1050px) {
+    .contact-address {
+        padding: 2rem 0 0 2rem !important;
+    }
+}
+
+@media (max-width: 1040px) {
+
+    .location-globe {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 890px) {
+    .location-globe {
+        max-width: 300px;
+    }
+
+    .contact-address .sub-title {
+        font-size: 18px;
+        margin-bottom: 1rem;
+    }
+}
+@media (min-width: 768px) and (max-width: 992px){
+    .home-banner-label .label-icon img {
+    max-height: 28px;
+}
+.home-banner-label .label-icon{
+    padding: 0.1rem;
+}
+.popular-category .sub-title{
+    font-size: 12px;
+}
+.popular-category .label-content{
+    font-size: 10px;
+}
+}
