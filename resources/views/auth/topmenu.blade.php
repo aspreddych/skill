@@ -30,10 +30,18 @@
                         <a class="nav-link" href="{{ url('/contactus') }}">Contact Us</a>
                     </li>
                 </ul>
-                <ul class="header-buttons">
+                <!-- <ul class="header-buttons">
                     <button class="btn btn-secondary" type="submit">Sign In</button>
                     <button class="btn btn-primary" type="submit">Sign Up</button>
+                </ul> -->
+                @auth
+                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">Logout</button>
                     </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-secondary" type="button">Admin Login</a>
+                @endauth
             </div>
         </div>
     </nav>

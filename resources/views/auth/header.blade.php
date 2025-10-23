@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Skill Launches - About Us</title>
+    <title>Skill Launches</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
