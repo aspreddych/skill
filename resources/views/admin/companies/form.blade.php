@@ -27,7 +27,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Company Logo</label>
-        <input type="file" name="logo" class="form-control">
+        <input type="file" name="logo" class="form-control"  accept="image/*">
         @if(!empty($company->logo))
             <div class="mt-2">
                 <img src="{{ asset($company->logo) }}" alt="Logo" width="100" height="100" class="border rounded">

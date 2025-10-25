@@ -9,10 +9,10 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Edit Company </h3>
+              <h3 class="page-title"> Edit Location </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Company</li>
+                  <li class="breadcrumb-item">Location</li>
                   <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
               </nav>
@@ -38,10 +38,10 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Company</h4>
-                    <form class="forms-sample" method="post"  action="{{ route('companies.update', $company->id) }}" enctype="multipart/form-data">
+                    <h4 class="card-title">Edit Location</h4>
+                    <form class="forms-sample" method="post"  action="{{ route('job-locations.update', $jobLocation->id) }}">
                         @csrf @method('PUT')
-                        @include('admin.companies.form', ['company' => $company])
+                        @include('admin.job-locations.form', ['jobLocation' => $jobLocation])
                       <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
                     </form>
                   </div>

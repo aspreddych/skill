@@ -1,160 +1,107 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-    <li class="nav-item nav-profile">
-        <a href="#" class="nav-link">
-        <div class="nav-profile-image">
-            <img src="{{ asset('images/dashboard/user.png') }}" alt="profile" />
-            <span class="login-status online"></span>
-            <!--change to offline or busy as needed-->
-        </div>
-        <div class="nav-profile-text d-flex flex-column">
-            <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
-            <span class="text-secondary text-small">{{ Auth::user()->email }}</span>
-        </div>
-        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/dashboard') }}">
-        <span class="menu-title">Dashboard</span>
-        <i class="mdi mdi-home menu-icon"></i>
-        </a>
-    </li>
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+            <div class="nav-profile-image">
+                <img src="{{ asset('images/dashboard/user.png') }}" alt="profile" />
+                <span class="login-status online"></span>
+                <!--change to offline or busy as needed-->
+            </div>
+            <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
+                <span class="text-secondary text-small">{{ Auth::user()->email }}</span>
+            </div>
+            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/dashboard') }}">
+            <span class="menu-title">Dashboard</span>
+            <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
 
-    @php
-    $jobCategoryRoutes = ['job-categories.create', 'job-categories.index', 'job-categories.edit'];
-@endphp
-<li class="nav-item {{ request()->routeIs($jobCategoryRoutes) ? 'active' : '' }}">
-    <a class="nav-link" data-bs-toggle="collapse" href="#ui-categories"
-        aria-expanded="{{ request()->routeIs($jobCategoryRoutes) ? 'true' : 'false' }}"
-        aria-controls="ui-categories">
-        <span class="menu-title">Job Categories</span>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-    </a>
-    <div class="collapse {{ request()->routeIs($jobCategoryRoutes) ? 'show' : '' }}" id="ui-categories">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('job-categories.create') ? 'active' : '' }}"
-                    href="{{ route('job-categories.create') }}">Create</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs(['job-categories.index', 'job-categories.edit']) ? 'active' : '' }}"
-                    href="{{ route('job-categories.index') }}">View</a>
-            </li>
-        </ul>
-    </div>
-</li>
+        @php
+            $jobCategoryRoutes = [
+                'job-categories.index',
+                'job-categories.create',
+                'job-categories.edit',
+            ];
 
-@php
-    $companiesRoutes = ['companies.create', 'companies.index', 'companies.edit'];
-@endphp
-<li class="nav-item {{ request()->routeIs($companiesRoutes) ? 'active' : '' }}">
-    <a class="nav-link" data-bs-toggle="collapse" href="#ui-companies"
-        aria-expanded="{{ request()->routeIs($companiesRoutes) ? 'true' : 'false' }}"
-        aria-controls="ui-companies">
-        <span class="menu-title">Companies</span>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-domain menu-icon"></i>
-    </a>
-    <div class="collapse {{ request()->routeIs($companiesRoutes) ? 'show' : '' }}" id="ui-companies">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('companies.create') ? 'active' : '' }}"
-                    href="{{ route('companies.create') }}">Create</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs(['companies.index', 'companies.edit']) ? 'active' : '' }}"
-                    href="{{ route('companies.index') }}">View</a>
-            </li>
-        </ul>
-    </div>
-</li>
+            $companyRoutes = [
+                'companies.index',
+                'companies.create',
+                'companies.edit',
+            ];
 
+            $jobLocationsRoutes = [
+                'job-locations.index',
+                'job-locations.create',
+                'job-locations.edit',
+            ];
+        @endphp
 
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-        <span class="menu-title">Icons</span>
-        <i class="mdi mdi-contacts menu-icon"></i>
-        </a>
-        <div class="collapse" id="icons">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-            <a class="nav-link" href="pages/icons/font-awesome.html">Font Awesome</a>
-            </li>
-        </ul>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
-        <span class="menu-title">Forms</span>
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-        </a>
-        <div class="collapse" id="forms">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">Form Elements</a>
-            </li>
-        </ul>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-        <span class="menu-title">Charts</span>
-        <i class="mdi mdi-chart-bar menu-icon"></i>
-        </a>
-        <div class="collapse" id="charts">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-            </li>
-        </ul>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-        <span class="menu-title">Tables</span>
-        <i class="mdi mdi-table-large menu-icon"></i>
-        </a>
-        <div class="collapse" id="tables">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-            </li>
-        </ul>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <span class="menu-title">User Pages</span>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-lock menu-icon"></i>
-        </a>
-        <div class="collapse" id="auth">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-            <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/samples/login.html"> Login </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/samples/register.html"> Register </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
-            </li>
-        </ul>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="docs/documentation.html" target="_blank">
-        <span class="menu-title">Documentation</span>
-        <i class="mdi mdi-file-document-box menu-icon"></i>
-        </a>
-    </li>
+        <!-- Job Categories -->
+        <li class="nav-item {{ in_array(Route::currentRouteName(), $jobCategoryRoutes) ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-categories"
+                aria-expanded="{{ in_array(Route::currentRouteName(), $jobCategoryRoutes) ? 'true' : 'false' }}"
+                aria-controls="ui-categories">
+                <span class="menu-title">Job Categories</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse {{ in_array(Route::currentRouteName(), $jobCategoryRoutes) ? 'show' : '' }}" id="ui-categories">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'job-categories.create' ? 'active' : '' }}" href="{{ route('admin.job-categories.create') }}">Create</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['job-categories.index','job-categories.edit']) ? 'active' : '' }}" href="{{ route('job-categories.index') }}">View</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Companies -->
+        <li class="nav-item {{ in_array(Route::currentRouteName(), $companyRoutes) ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-companies"
+                aria-expanded="{{ in_array(Route::currentRouteName(), $companyRoutes) ? 'true' : 'false' }}"
+                aria-controls="ui-companies">
+                <span class="menu-title">Companies</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-domain menu-icon"></i>
+            </a>
+            <div class="collapse {{ in_array(Route::currentRouteName(), $companyRoutes) ? 'show' : '' }}" id="ui-companies">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'companies.create' ? 'active' : '' }}" href="{{ route('admin.company.create') }}">Create</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['companies.index','companies.edit']) ? 'active' : '' }}" href="{{ route('companies.index') }}">View</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Job Locations -->
+        <li class="nav-item {{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-locations"
+                aria-expanded="{{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'true' : 'false' }}"
+                aria-controls="ui-locations">
+                <span class="menu-title">Job Locations</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-domain menu-icon"></i>
+            </a>
+            <div class="collapse {{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'show' : '' }}" id="ui-locations">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'job-locations.create' ? 'active' : '' }}" href="{{ route('admin.location.create') }}">Create</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['job-locations.index','job-locations.edit']) ? 'active' : '' }}" href="{{ route('job-locations.index') }}">View</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
     </ul>
 </nav>

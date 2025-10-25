@@ -38,7 +38,7 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form class="forms-sample" method="post" action="{{ route('companies.store') }}">
+                    <form class="forms-sample" method="post" action="{{ route('companies.store') }}" enctype="multipart/form-data">
                         @csrf
                         @include('admin.companies.form')
                       <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>

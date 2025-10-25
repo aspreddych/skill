@@ -9,11 +9,11 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Edit Company </h3>
+              <h3 class="page-title"> Add Location </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Company</li>
-                  <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                  <li class="breadcrumb-item">Locations</li>
+                  <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
               </nav>
             </div>
@@ -38,11 +38,10 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Company</h4>
-                    <form class="forms-sample" method="post"  action="{{ route('companies.update', $company->id) }}" enctype="multipart/form-data">
-                        @csrf @method('PUT')
-                        @include('admin.companies.form', ['company' => $company])
-                      <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+                    <form class="forms-sample" method="post" action="{{ route('job-locations.store') }}">
+                        @csrf
+                        @include('admin.job-locations.form')
+                      <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                     </form>
                   </div>
                 </div>
