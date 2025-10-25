@@ -23,28 +23,55 @@
 
     @php
     $jobCategoryRoutes = ['job-categories.create', 'job-categories.index', 'job-categories.edit'];
-    @endphp
-    <li class="nav-item {{ request()->routeIs($jobCategoryRoutes) ? 'active' : '' }}">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-categories"
-            aria-expanded="{{ request()->routeIs($jobCategoryRoutes) ? 'true' : 'false' }}"
-            aria-controls="ui-basic">
-            <span class="menu-title">Job Categories</span>
-            <i class="menu-arrow"></i>
-            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-        </a>
-        <div class="collapse {{ request()->routeIs($jobCategoryRoutes) ? 'show' : '' }}" id="ui-categories">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('job-categories.create') ? 'active' : '' }}" href="{{ route('job-categories.create') }}">Add</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link
-                    {{ request()->routeIs(['job-categories.index', 'job-categories.edit']) ? 'active' : '' }}"
+@endphp
+<li class="nav-item {{ request()->routeIs($jobCategoryRoutes) ? 'active' : '' }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#ui-categories"
+        aria-expanded="{{ request()->routeIs($jobCategoryRoutes) ? 'true' : 'false' }}"
+        aria-controls="ui-categories">
+        <span class="menu-title">Job Categories</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+    </a>
+    <div class="collapse {{ request()->routeIs($jobCategoryRoutes) ? 'show' : '' }}" id="ui-categories">
+        <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('job-categories.create') ? 'active' : '' }}"
+                    href="{{ route('job-categories.create') }}">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs(['job-categories.index', 'job-categories.edit']) ? 'active' : '' }}"
                     href="{{ route('job-categories.index') }}">View</a>
-                </li>
-            </ul>
-        </div>
-    </li>
+            </li>
+        </ul>
+    </div>
+</li>
+
+@php
+    $companiesRoutes = ['companies.create', 'companies.index', 'companies.edit'];
+@endphp
+<li class="nav-item {{ request()->routeIs($companiesRoutes) ? 'active' : '' }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#ui-companies"
+        aria-expanded="{{ request()->routeIs($companiesRoutes) ? 'true' : 'false' }}"
+        aria-controls="ui-companies">
+        <span class="menu-title">Companies</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-domain menu-icon"></i>
+    </a>
+    <div class="collapse {{ request()->routeIs($companiesRoutes) ? 'show' : '' }}" id="ui-companies">
+        <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('companies.create') ? 'active' : '' }}"
+                    href="{{ route('companies.create') }}">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs(['companies.index', 'companies.edit']) ? 'active' : '' }}"
+                    href="{{ route('companies.index') }}">View</a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+
     <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
         <span class="menu-title">Icons</span>

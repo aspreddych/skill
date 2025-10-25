@@ -3,15 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\CompanyController;
 
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
 
 
 // Route::middleware('auth')->prefix('admin')->group(function () {
@@ -28,7 +25,18 @@ Route::get('/dashboard', function () {
 //     });
 // });
 
-Route::resource('job-categories', JobCategoryController::class);
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::resource('/admin/job-categories', JobCategoryController::class);
+    Route::resource('/admin/companies', CompanyController::class);
+
+});
 
 
 Route::get('/', function () {
