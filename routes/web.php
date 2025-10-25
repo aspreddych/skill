@@ -10,12 +10,26 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth');
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
 
-Route::get('/admin/job/category/add', function () {
-    return view('admin.categories.add');
-})->middleware('auth')->name('admin.categories.add');
+
+// Route::middleware('auth')->prefix('admin')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('admin.dashboard');
+//     })->name('admin.dashboard');
+
+//     Route::prefix('job/category')->group(function () {
+//         Route::get('/add', function () {
+//             return view('admin.categories.add');
+//         })->name('admin.categories.add'); 
+
+//         Route::get('/view', [JobCategoryController::class, 'index'])->name('admin.categories.view');
+//     });
+// });
+
+Route::resource('job-categories', JobCategoryController::class);
+
 
 Route::get('/', function () {
     return view('home');

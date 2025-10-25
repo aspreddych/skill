@@ -20,19 +20,27 @@
         <i class="mdi mdi-home menu-icon"></i>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+
+    @php
+    $jobCategoryRoutes = ['job-categories.create', 'job-categories.index', 'job-categories.edit'];
+    @endphp
+    <li class="nav-item {{ request()->routeIs($jobCategoryRoutes) ? 'active' : '' }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-categories"
+            aria-expanded="{{ request()->routeIs($jobCategoryRoutes) ? 'true' : 'false' }}"
+            aria-controls="ui-basic">
             <span class="menu-title">Job Categories</span>
             <i class="menu-arrow"></i>
             <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse {{ request()->routeIs($jobCategoryRoutes) ? 'show' : '' }}" id="ui-categories">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/admin/job/category/add') }}">Add</a>
+                    <a class="nav-link {{ request()->routeIs('job-categories.create') ? 'active' : '' }}" href="{{ route('job-categories.create') }}">Add</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/dropdowns.html">View</a>
+                    <a class="nav-link
+                    {{ request()->routeIs(['job-categories.index', 'job-categories.edit']) ? 'active' : '' }}"
+                    href="{{ route('job-categories.index') }}">View</a>
                 </li>
             </ul>
         </div>

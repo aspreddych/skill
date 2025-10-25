@@ -10,12 +10,12 @@ class JobCategoryController extends Controller
     public function index()
     {
         $categories = JobCategory::all();
-        return view('job_categories.index', compact('categories'));
+        return view('admin.categories.view', compact('categories'));
     }
 
     public function create()
     {
-        return view('job_categories.create');
+        return view('admin.categories.add');
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class JobCategoryController extends Controller
             JobCategory::create($request->only(['name', 'description']));
 
             return redirect()
-                ->route('admin.categories.add')
+                ->route('job-categories.create')
                 ->with('success', 'Category added successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             // This handles validation errors separately (already shown via @error)
@@ -46,7 +46,7 @@ class JobCategoryController extends Controller
 
     public function edit(JobCategory $jobCategory)
     {
-        return view('job_categories.edit', compact('jobCategory'));
+        return view('admin.categories.edit', compact('jobCategory'));
     }
 
     public function update(Request $request, JobCategory $jobCategory)
