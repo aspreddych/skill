@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/showallcategories', [HomeController::class, 'listAllJobCategories'])->name('showallcategories');
+Route::get('/showallactivejobs', [HomeController::class, 'showallactivejobs'])->name('showallactivejobs');
 
 Route::get('/aboutus', function () {
     return view('aboutus');

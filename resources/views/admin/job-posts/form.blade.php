@@ -27,6 +27,26 @@
         </div>
 
         <div class="mb-3">
+            <label class="form-label">Employment Type</label>
+            <select name="employment_type" class="form-control" required>
+                <option value="">Select Type</option>
+                <option value="Full-time" {{ old('employment_type', $job->employment_type ?? '') == 'Full-time' ? 'selected' : '' }}>Full-time</option>
+                <option value="Part-time" {{ old('employment_type', $job->employment_type ?? '') == 'Part-time' ? 'selected' : '' }}>Part-time</option>
+                <option value="Contract" {{ old('employment_type', $job->employment_type ?? '') == 'Contract' ? 'selected' : '' }}>Contract</option>
+                <option value="Internship" {{ old('employment_type', $job->employment_type ?? '') == 'Internship' ? 'selected' : '' }}>Internship</option>
+                <option value="Temporary" {{ old('employment_type', $job->employment_type ?? '') == 'Temporary' ? 'selected' : '' }}>Temporary</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Job Link (Company’s Job Post)</label>
+            <input type="url" name="job_link" class="form-control"
+                placeholder="https://example.com/job/123"
+                value="{{ old('job_link', $job->job_link ?? '') }}">
+        </div>
+
+
+        <div class="mb-3">
             <label class="form-label">Category</label>
             <select name="category_id" class="form-control" required>
                 <option value="">Select Category</option>
@@ -34,19 +54,6 @@
                     <option value="{{ $category->id }}" 
                         {{ old('category_id', $job->category_id ?? '') == $category->id ? 'selected' : '' }}>
                         {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Location</label>
-            <select name="location_id" class="form-control" required>
-                <option value="">Select Location</option>
-                @foreach ($locations as $location)
-                    <option value="{{ $location->id }}" 
-                        {{ old('location_id', $job->location_id ?? '') == $location->id ? 'selected' : '' }}>
-                        {{ $location->name }}
                     </option>
                 @endforeach
             </select>
@@ -79,6 +86,19 @@
         <div class="mb-3">
             <label class="form-label">Requirements</label>
             <textarea name="requirements" class="form-control" rows="3" placeholder="Any Requirements">{{ old('requirements', $job->requirements ?? '') }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <select name="location_id" class="form-control" required>
+                <option value="">Select Location</option>
+                @foreach ($locations as $location)
+                    <option value="{{ $location->id }}" 
+                        {{ old('location_id', $job->location_id ?? '') == $location->id ? 'selected' : '' }}>
+                        {{ $location->name }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 </div>

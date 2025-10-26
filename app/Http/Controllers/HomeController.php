@@ -23,7 +23,13 @@ class HomeController extends Controller
             ->get();
         $locations = JobLocation::all();
         $totalPositions = JobPost::sum('positions');
-        return view('home', compact('companies', 'categories', 'locations','totalPositions'));
+
+        $latestJobs = JobPost::where('status', 'active')   // only active jobs
+                    ->latest('created_at')                    // newest first
+                    ->take(8)                                 // limit to 8
+                    ->get();
+
+        return view('home', compact('companies', 'categories', 'locations','totalPositions','latestJobs'));
     }
 
     public function listAllJobCategories(){
@@ -33,6 +39,14 @@ class HomeController extends Controller
             }
         ])->get();
         return view('job-categories', compact('categories'));
+    }
+
+     public function showallactivejobs(){
+        $latestJobs = JobPost::where('status', 'active')   // only active jobs
+                    ->latest('created_at')                    // newest first
+                    ->get();
+
+        return view('active-jobs', compact('latestJobs'));
     }
 
 }

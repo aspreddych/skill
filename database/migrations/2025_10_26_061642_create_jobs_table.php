@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('job_categories')->onDelete('cascade');
             $table->foreignId('location_id')->constrained('job_locations')->onDelete('cascade');
             $table->string('salary')->nullable();
+            $table->string('employment_type');
+            $table->string('job_link')->nullable();
             $table->text('description');
             $table->text('requirements')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

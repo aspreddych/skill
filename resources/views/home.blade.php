@@ -144,158 +144,31 @@
         <div class="container my-4">
             <div class="banner-main-title black-title pb-4">
                 <span>Featured jobs</span>
-                <span class="view-btn"><button class="btn">Show All Jobs <img
+                <span class="view-btn"><button class="btn" onclick="window.location='{{ url('/showallactivejobs') }}'">Show All Jobs <img
                             src="{{ asset('images/view-arrow.svg') }}" /></button></span>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/email-marketing-icon.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Email Marketing</h6>
-                            <span class="featured-sub-title">Revolut . Madrid, Spain</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="marketing-label">Marketing</span>
-                            <span class="design-label">Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/brand-designer.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Brand Designer</h6>
-                            <span class="featured-sub-title">Canva . Ontario, Canada</span>
-                            <p class="featured-content">
-                                Canva is looking for Lead Engineer to help develop n ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="design-label">Design</span>
-                            <span class="business-label">Business</span>
+                @foreach ($latestJobs as $job)
+                    <div class="col-md-3">
+                        <div class="featured-card">
+                            <div class="featured-card-header">
+                               <img src="{{ asset($job->company->logo) }}" alt="Company Logo">
+                                <span class="job-type-label">{{ $job->employment_type }}</span>
+                            </div>
+                            <div class="featured-card-body">
+                                <h6 class="featured-tile">{{ $job->title }}</h6>
+                                <span class="featured-sub-title">{{ $job->company->name ?? 'N/A' }}, {{ $job->location->name ?? 'N/A' }}</span>
+                                <p class="featured-content">
+                                     {{ $job->description }}
+                                </p>
+                            </div>
+                            <div class="featured-footer">
+                                <span class="design-label">{{ $job->category->name ?? 'N/A' }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/email-digi-marketing.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Email Digi Marketing</h6>
-                            <span class="featured-sub-title">Pitch . Berlin, Germany</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="marketing-label">Marketing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/visual-designer.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Visual Designer</h6>
-                            <span class="featured-sub-title">Revolut . Madrid, Spain</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="design-label">Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/product-designer.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Product Designer</h6>
-                            <span class="featured-sub-title">Revolut . Madrid, Spain</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="marketing-label">Marketing</span>
-                            <span class="design-label">Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/lead-designer.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Lead Designer</h6>
-                            <span class="featured-sub-title">Revolut . Madrid, Spain</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="design-label">Design</span>
-                            <span class="business-label">Business</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/brand-startegist.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Brand Strategist</h6>
-                            <span class="featured-sub-title">GoDaddy . Marseille, France</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="marketing-label">Marketing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="featured-card">
-                        <div class="featured-card-header">
-                            <img src="{{ asset('images/data-analyst-icon.svg') }}" />
-                            <span class="job-type-label">Full Time</span>
-                        </div>
-                        <div class="featured-card-body">
-                            <h6 class="featured-tile">Data Analyst</h6>
-                            <span class="featured-sub-title">Twitter . San Diego, US</span>
-                            <p class="featured-content">
-                                Revolut is looking for Email Marketing to help team ma ...
-                            </p>
-                        </div>
-                        <div class="featured-footer">
-                            <span class="technology-label">Technology</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
             </div>
         </div>
         <!--Testimonial Code For Desktop -- START -->

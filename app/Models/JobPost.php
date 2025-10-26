@@ -9,7 +9,8 @@ class JobPost extends Model
     protected $table = 'job_posts';
 
     protected $fillable = [
-        'title', 'positions' ,'company_id', 'category_id', 'location_id', 'salary', 'description', 'requirements', 'status'
+        'title', 'positions' ,'company_id', 'category_id', 'location_id', 'salary', 'employment_type', 'job_link',
+        'description', 'requirements', 'status'
     ];
 
     public function company() {

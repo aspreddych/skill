@@ -41,6 +41,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Employment Type</th>
                             <th>Postitions</th>
                             <th>Company</th>
                             <th>Category</th>
@@ -55,6 +56,7 @@
                             <tr>
                                 <td>{{ $job->id }}</td>
                                 <td>{{ $job->title }}</td>
+                                <td>{{ $job->employment_type ?? '-' }}</td>
                                 <td>{{ $job->positions }}</td>
                                 <td>{{ $job->company->name ?? '-' }}</td>
                                 <td>{{ $job->category->name ?? '-' }}</td>

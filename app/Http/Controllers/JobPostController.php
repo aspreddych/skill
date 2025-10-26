@@ -33,6 +33,8 @@ class JobPostController extends Controller
             'company_id' => 'required|exists:companies,id',
             'category_id' => 'required|exists:job_categories,id',
             'location_id' => 'required|exists:job_locations,id',
+            'employment_type' => 'required|string',
+            'job_link' => 'nullable|url',
             'description' => 'required',
         ]);
 
