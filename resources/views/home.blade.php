@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="content-space">
                                         <h6 class="sub-title">Top Companies</h6>
-                                        <p class="label-content">32 Companies</p>
+                                        <p class="label-content">{{ $companies->count()}} Companies</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="content-space">
                                         <h6 class="sub-title">Best Job Opportunity</h6>
-                                        <p class="label-content">1234 Job vacancies</p>
+                                        <p class="label-content">{{ $totalPositions }} Job vacancies</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,99 +128,16 @@
         <div class="popular-category">
             <div class="container">
                 <div class="banner-main-title black-title pb-4">
-                    <span>Popular category</span>
-                    <span class="view-btn"><button class="btn">View All <img
-                                src="{{ asset('images/view-arrow.svg') }}" /></button></span>
+                    <span>Popular Categories</span>
+                    <span class="view-btn">
+                        <button type="button" class="btn" onclick="window.location='{{ url('/showallcategories') }}'">
+                            View All
+                            <img src="{{ asset('images/view-arrow.svg') }}" alt="View arrow">
+                        </button>
+                    </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/graphic-design-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Graphics & Design</h6>
-                                <p class="label-content">357 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/code-programing-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Code & Programing</h6>
-                                <p class="label-content">312 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/digital-marketing-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Digital Marketing</h6>
-                                <p class="label-content">125 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/video-animation-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Video & Animation</h6>
-                                <p class="label-content">247 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/music-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Music & Audio</h6>
-                                <p class="label-content">204 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/account-finance-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Account & Finance</h6>
-                                <p class="label-content">357 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/health-care-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Health & Care</h6>
-                                <p class="label-content">128 Open position</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="home-banner-label">
-                            <div class="label-icon top-copanies-icon-bg">
-                                <img src="{{ asset('images/data-science-icon.svg') }}" alt="Popular Category Icon" />
-                            </div>
-                            <div class="content-space">
-                                <h6 class="sub-title">Data & Science</h6>
-                                <p class="label-content">57 Open position</p>
-                            </div>
-                        </div>
-                    </div>
+                    @include('categories-list')
                 </div>
             </div>
         </div>

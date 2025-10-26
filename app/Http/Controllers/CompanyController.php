@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Models\JobLocation;
 
 class CompanyController extends Controller
 {
@@ -16,7 +17,8 @@ class CompanyController extends Controller
 
     public function create()
     {
-        return view('admin.companies.create');
+        $locations = JobLocation::all();
+        return view('admin.companies.create',compact('locations'));
     }
 
     public function store(Request $request)
@@ -43,7 +45,8 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
-        return view('admin.companies.edit', compact('company'));
+        $locations = JobLocation::all();
+        return view('admin.companies.edit', compact('company','locations'));
     }
 
     public function update(Request $request, Company $company)

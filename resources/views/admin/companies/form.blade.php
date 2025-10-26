@@ -20,9 +20,17 @@
         <input type="text" name="website" placeholder="Website" value="{{ old('website', $company->website ?? '') }}" class="form-control">
     </div>
 
-    <div class="col-md-12 mb-3">
-        <label class="form-label">Address</label>
-        <input type="text" name="address" placeholder="Address" value="{{ old('address', $company->address ?? '') }}" class="form-control">
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Location</label>
+        <select name="location_id" class="form-control" required>
+            <option value="">Select Location</option>
+            @foreach ($locations as $location)
+                <option value="{{ $location->id }}" 
+                    {{ old('location_id', $company->location_id ?? '') == $location->id ? 'selected' : '' }}>
+                    {{ $location->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 
     <div class="col-md-6 mb-3">
