@@ -127,6 +127,9 @@
                     <li class="nav-item">
                         <a class="nav-link {{ in_array(Route::currentRouteName(), ['job-posts.index','job-posts.edit']) ? 'active' : '' }}" href="{{ route('job-posts.index') }}">View</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'job-posts.import' ? 'active' : '' }}" href="{{ route('jobs.import.form') }}">Bulk Upload</a>
+                    </li>
                 </ul>
             </div>
         </li>

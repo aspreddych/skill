@@ -8,6 +8,7 @@ use App\Http\Controllers\JobLocationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobImportController;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/job-locations', JobLocationController::class);
     Route::resource('job-posts', JobPostController::class);
 
+    Route::get('/admin/jobs/import', [JobImportController::class, 'showImportForm'])->name('jobs.import.form');
+    Route::post('/admin/jobs/import', [JobImportController::class, 'import'])->name('jobs.import');
 });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
