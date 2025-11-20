@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('salary')->nullable();
             $table->string('employment_type');
             $table->string('job_link')->nullable();
-            $table->text('description');
-            $table->text('requirements')->nullable();
+            $table->string('education_qualification');
+            $table->string('experience_required');
+            $table->longText('skills');
+            $table->longText('responsibilities');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

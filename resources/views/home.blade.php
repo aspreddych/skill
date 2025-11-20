@@ -150,6 +150,7 @@
             <div class="row">
                 @foreach ($latestJobs as $job)
                     <div class="col-md-3">
+                        <a href="{{ route('landing.job.show', $job->id) }}" class="text-decoration-none">
                         <div class="featured-card">
                             <div class="featured-card-header">
                                <img src="{{ asset($job->company->logo) }}" alt="Company Logo">
@@ -166,6 +167,7 @@
                                 <span class="design-label">{{ $job->category->name ?? 'N/A' }}</span>
                             </div>
                         </div>
+                        </a>
                     </div>
                 @endforeach
                 

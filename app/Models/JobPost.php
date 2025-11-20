@@ -10,7 +10,7 @@ class JobPost extends Model
 
     protected $fillable = [
         'title', 'positions' ,'company_id', 'category_id', 'location_id', 'salary', 'employment_type', 'job_link',
-        'description', 'requirements', 'status'
+        'education_qualification', 'experience_required', 'status', 'skills', 'responsibilities'
     ];
 
     public function company() {

@@ -29,13 +29,17 @@ class JobPostController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'salary' => 'required',
             'positions' => 'required|integer|min:1',
             'company_id' => 'required|exists:companies,id',
             'category_id' => 'required|exists:job_categories,id',
             'location_id' => 'required|exists:job_locations,id',
             'employment_type' => 'required|string',
+            'education_qualification' => 'required|string',
             'job_link' => 'nullable|url',
-            'description' => 'required',
+            'experience_required' => 'required',
+            'skills' => 'required',
+            'responsibilities' => 'required',
         ]);
 
         JobPost::create($request->all());
@@ -71,4 +75,19 @@ class JobPostController extends Controller
         $job_post->delete();
         return redirect()->route('job-posts.index')->with('success', 'Job deleted successfully!');
     }
+
+    public function show($id)
+    {
+        $job = JobPost::with(['company', 'category', 'location'])->findOrFail($id);
+
+        // Fetch other active jobs from the same company
+        $relatedJobs = JobPost::where('company_id', $job->company_id)
+            ->where('id', '!=', $job->id)    // Exclude current job
+            ->where('status', 'active')
+            ->limit(6)
+            ->get();
+
+        return view('view-job', compact('job', 'relatedJobs'));
+    }
+
 }

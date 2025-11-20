@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained('job_locations')->onDelete('cascade');
             $table->string('website')->nullable();
             $table->string('logo')->nullable();
+            $table->text('overview');
             $table->timestamps();
         });
     }

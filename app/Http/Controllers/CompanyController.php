@@ -27,6 +27,7 @@ class CompanyController extends Controller
             'name' => 'required|max:255',
             'email' => 'nullable|email',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'overview' => 'required',
         ]);
 
         $data = $request->except('logo');

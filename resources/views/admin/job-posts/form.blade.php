@@ -45,6 +45,55 @@
                 value="{{ old('job_link', $job->job_link ?? '') }}">
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Experience Required</label>
+            <input type="text" name="experience_required" class="form-control" 
+                   value="{{ old('salary', $job->experience_required ?? '') }}" placeholder="Experience Required" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Key Responsibilities (Each in one line)</label>
+            <textarea name="responsibilities" class="form-control" rows="10" placeholder="Key Responsibilities" required>{{ old('responsibilities', $job->responsibilities ?? '') }}</textarea>
+        </div>
+
+    </div>
+
+    {{-- Right Column --}}
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Salary Estimate</label>
+            <input type="text" name="salary" class="form-control" 
+                   value="{{ old('salary', $job->salary ?? '') }}" placeholder="Salary Estimate" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select name="status" class="form-control">
+                <option value="active" 
+                    {{ old('status', $job->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
+                <option value="inactive" 
+                    {{ old('status', $job->status ?? '') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>  
+
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <select name="location_id" class="form-control" required>
+                <option value="">Select Location</option>
+                @foreach ($locations as $location)
+                    <option value="{{ $location->id }}" 
+                        {{ old('location_id', $job->location_id ?? '') == $location->id ? 'selected' : '' }}>
+                        {{ $location->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Education Qualification</label>
+            <input type="text" name="education_qualification" class="form-control" 
+                   value="{{ old('education_qualification', $job->education_qualification ?? '') }}" placeholder="Education Qualification" required>
+        </div>
 
         <div class="mb-3">
             <label class="form-label">Category</label>
@@ -58,47 +107,10 @@
                 @endforeach
             </select>
         </div>
-    </div>
-
-    {{-- Right Column --}}
-    <div class="col-md-6">
-        <div class="mb-3">
-            <label class="form-label">Salary</label>
-            <input type="text" name="salary" class="form-control" 
-                   value="{{ old('salary', $job->salary ?? '') }}" placeholder="Salary">
-        </div>
 
         <div class="mb-3">
-            <label class="form-label">Status</label>
-            <select name="status" class="form-control">
-                <option value="active" 
-                    {{ old('status', $job->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
-                <option value="inactive" 
-                    {{ old('status', $job->status ?? '') == 'inactive' ? 'selected' : '' }}>Inactive</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4" placeholder="Description" required>{{ old('description', $job->description ?? '') }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Requirements</label>
-            <textarea name="requirements" class="form-control" rows="3" placeholder="Any Requirements">{{ old('requirements', $job->requirements ?? '') }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Location</label>
-            <select name="location_id" class="form-control" required>
-                <option value="">Select Location</option>
-                @foreach ($locations as $location)
-                    <option value="{{ $location->id }}" 
-                        {{ old('location_id', $job->location_id ?? '') == $location->id ? 'selected' : '' }}>
-                        {{ $location->name }}
-                    </option>
-                @endforeach
-            </select>
+            <label class="form-label">Required Skills (Each in one line)</label>
+            <textarea name="skills" class="form-control" rows="10" placeholder="Required Skills" required>{{ old('skills', $job->skills ?? '') }}</textarea>
         </div>
     </div>
 </div>

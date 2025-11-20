@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-6 mb-3">
         <label class="form-label">Name</label>
-        <input type="text" name="name" placeholder="Company Name" value="{{ old('name', $company->name ?? '') }}" class="form-control">
+        <input type="text" name="name" placeholder="Company Name" value="{{ old('name', $company->name ?? '') }}" class="form-control" required>
         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Email</label>
-        <input type="email" name="email" placeholder="Email" value="{{ old('email', $company->email ?? '') }}" class="form-control">
+        <input type="email" name="email" placeholder="Email" value="{{ old('email', $company->email ?? '') }}" class="form-control" required>
     </div>
 
     <div class="col-md-6 mb-3">
@@ -17,7 +17,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Website</label>
-        <input type="text" name="website" placeholder="Website" value="{{ old('website', $company->website ?? '') }}" class="form-control">
+        <input type="text" name="website" placeholder="Website" value="{{ old('website', $company->website ?? '') }}" class="form-control" required>
     </div>
 
     <div class="col-md-6 mb-3">
@@ -41,5 +41,10 @@
                 <img src="{{ asset($company->logo) }}" alt="Logo" width="100" height="100" class="border rounded">
             </div>
         @endif
+    </div>
+
+    <div class="col-md-12 mb-3">
+        <label class="form-label">Overview</label>
+        <textarea name="overview"  placeholder="Company Overview" class="form-control" required>{{ old('overview', $company->overview ?? '') }}</textarea>
     </div>
 </div>

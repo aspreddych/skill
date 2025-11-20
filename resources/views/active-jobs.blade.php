@@ -1,6 +1,10 @@
 @include('auth.header')
 
 <body class="content">
+    <div class="page-banner">
+                <h5 class="section-title"><span class="title-label">Job Openings</span></h5>
+            <h2 class="page-title">Featured Jobs</h2>
+            </div>
     <div class="container-fuild">
         @include('auth.topmenu')
         <div class="min-content-section">
@@ -12,22 +16,21 @@
                     <div class="row">
                         @foreach ($latestJobs as $job)
                             <div class="col-md-3">
+                                <a href="{{ route('landing.job.show', $job->id) }}" class="text-decoration-none">
                                 <div class="featured-card">
                                     <div class="featured-card-header">
-                                    <img src="{{ asset($job->company->logo) }}" alt="Company Logo">
+                                    <img src="{{ asset($job->company->logo) }}" alt="Company Logo" width="90" class="me-3 rounded">
                                         <span class="job-type-label">{{ $job->employment_type }}</span>
                                     </div>
                                     <div class="featured-card-body">
                                         <h6 class="featured-tile">{{ $job->title }}</h6>
                                         <span class="featured-sub-title">{{ $job->company->name ?? 'N/A' }}, {{ $job->location->name ?? 'N/A' }}</span>
-                                        <p class="featured-content">
-                                            {{ $job->description }}
-                                        </p>
                                     </div>
                                     <div class="featured-footer">
                                         <span class="design-label">{{ $job->category->name ?? 'N/A' }}</span>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
