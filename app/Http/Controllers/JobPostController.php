@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\JobPost;
 use App\Models\Company;
 use App\Models\JobCategory;
-use App\Models\JobLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class JobPostController extends Controller
 {
     public function index()
     {
-        $jobs = JobPost::with(['company', 'category', 'location'])->latest()->get();
+        $jobs = JobPost::with(['company', 'category'])->latest()->get();
         return view('admin.job-posts.index', compact('jobs'));
     }
 
@@ -21,8 +22,7 @@ class JobPostController extends Controller
     {
         $companies = Company::all();
         $categories = JobCategory::all();
-        $locations = JobLocation::all();
-        return view('admin.job-posts.create', compact('companies', 'categories', 'locations'));
+        return view('admin.job-posts.create', compact('companies', 'categories'));
     }
 
     public function store(Request $request)
@@ -30,10 +30,9 @@ class JobPostController extends Controller
         $request->validate([
             'title' => 'required',
             'salary' => 'required',
-            'positions' => 'required|integer|min:1',
             'company_id' => 'required|exists:companies,id',
             'category_id' => 'required|exists:job_categories,id',
-            'location_id' => 'required|exists:job_locations,id',
+            'location' => 'required',
             'employment_type' => 'required|string',
             'education_qualification' => 'required|string',
             'job_link' => 'nullable|url',
@@ -42,7 +41,13 @@ class JobPostController extends Controller
             'responsibilities' => 'required',
         ]);
 
-        JobPost::create($request->all());
+        $data = $request->all();
+
+        // Capitalize every word in location
+        $data['title'] = Str::title(trim($request->title));
+        $data['location'] = Str::title(trim($request->location));
+
+        JobPost::create($data);
 
         return redirect()->route('job-posts.index')->with('success', 'Job created successfully!');
     }
@@ -51,8 +56,7 @@ class JobPostController extends Controller
     {
         $companies = Company::all();
         $categories = JobCategory::all();
-        $locations = JobLocation::all();
-        return view('admin.job-posts.edit', compact('job_post', 'companies', 'categories', 'locations'));
+        return view('admin.job-posts.edit', compact('job_post', 'companies', 'categories'));
     }
 
     public function update(Request $request, JobPost $job_post)
@@ -61,7 +65,6 @@ class JobPostController extends Controller
             'title' => 'required',
             'company_id' => 'required|exists:companies,id',
             'category_id' => 'required|exists:job_categories,id',
-            'location_id' => 'required|exists:job_locations,id',
             'description' => 'required',
         ]);
 
@@ -78,7 +81,7 @@ class JobPostController extends Controller
 
     public function show($id)
     {
-        $job = JobPost::with(['company', 'category', 'location'])->findOrFail($id);
+        $job = JobPost::with(['company', 'category'])->findOrFail($id);
 
         // Fetch other active jobs from the same company
         $relatedJobs = JobPost::where('company_id', $job->company_id)
@@ -87,7 +90,44 @@ class JobPostController extends Controller
             ->limit(6)
             ->get();
 
-        return view('view-job', compact('job', 'relatedJobs'));
+        $schema = [
+            "@context" => "https://schema.org",
+            "@type" => "JobPosting",
+            "title" => $job->title,
+            "description" => strip_tags($job->responsibilities),
+            "datePosted" => $job->created_at->toDateString(),
+            "validThrough" => $job->expiry_date
+                ? $job->expiry_date->toIso8601String()
+                : now()->addDays(30)->toIso8601String(),
+            "employmentType" => strtoupper($job->employment_type), // FULL_TIME
+            "hiringOrganization" => [
+                "@type" => "Organization",
+                "name" => $job->company->name,
+                "sameAs" => $job->company->website,
+                "logo" => asset($job->company->logo),
+            ],
+            "jobLocation" => [
+                "@type" => "Place",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => $job->location,
+                    "addressCountry" => $job->location,
+                ],
+            ],
+            "baseSalary" => [
+                "@type" => "MonetaryAmount",
+                "currency" => "USD",
+                "value" => [
+                    "@type" => "QuantitativeValue",
+                    "minValue" => $job->salary,
+                    "maxValue" => $job->salary,
+                    "unitText" => "YEAR",
+                ],
+            ],
+            "applyUrl" => route('landing.job.show', $job->id),
+        ];
+
+        return view('view-job', compact('job', 'relatedJobs','schema'));
     }
 
 }

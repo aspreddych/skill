@@ -34,12 +34,6 @@
                 'companies.edit',
             ];
 
-            $jobLocationsRoutes = [
-                'job-locations.index',
-                'job-locations.create',
-                'job-locations.edit',
-            ];
-
             $jobPostsRoutes = [
                 'job-posts.index',
                 'job-posts.create',
@@ -88,28 +82,6 @@
                 </ul>
             </div>
         </li>
-
-        <!-- Job Locations -->
-        <li class="nav-item {{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'active' : '' }}">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-locations"
-                aria-expanded="{{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'true' : 'false' }}"
-                aria-controls="ui-locations">
-                <span class="menu-title">Job Locations</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-map-marker menu-icon"></i>
-            </a>
-            <div class="collapse {{ in_array(Route::currentRouteName(), $jobLocationsRoutes) ? 'show' : '' }}" id="ui-locations">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'job-locations.create' ? 'active' : '' }}" href="{{ route('admin.location.create') }}">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['job-locations.index','job-locations.edit']) ? 'active' : '' }}" href="{{ route('job-locations.index') }}">View</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
         <!-- Job Posts -->
         <li class="nav-item {{ in_array(Route::currentRouteName(), $jobPostsRoutes) ? 'active' : '' }}">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-jobPosts"

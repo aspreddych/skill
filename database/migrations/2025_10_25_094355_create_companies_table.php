@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->foreignId('location_id')->constrained('job_locations')->onDelete('cascade');
+            $table->string('location');
             $table->string('website')->nullable();
             $table->string('logo')->nullable();
-            $table->text('overview');
+            $table->text('overview')->nullable();
             $table->timestamps();
         });
     }

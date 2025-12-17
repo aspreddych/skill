@@ -7,33 +7,62 @@
             <div class="page-banner pb-4">
                 <div class="container company-profile card featured-card p-3">
                     <div class="row">
-                        <div class="col-md-4 align-self-center">
-                            <img class="jd-logo" src="{{ asset($job->company->logo) }}"/>
+                        <div class="col-md-8">
+                            <h2 class="job-title-header mb-0">{{ $job->title }}</h2>
+                            <ul class="job-description-info">
+                                <li class="mb-2">
+                                    <h6 class="featured-tile">{{ $rjob->company->name ?? 'N/A' }} | <span class="mx-1">
+                                            <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                            <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                            <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                            <img class="job-icon" src="{{ asset('images/half-star.svg') }}">
+                                            <img class="job-icon" src="{{ asset('images/empty-star.svg') }}">
+                                            3.5</span> | <span class="sub-info">203 Reviews</span></h6>
+                                </li>
+                                <li>
+                                    <span class="sub-info"><img class="job-icon"
+                                            src="{{ asset('images/office-bag-icon.svg') }}" /> 5 - 10 years</span> | <span
+                                        class="sub-info"><img class="job-icon rupee-icon"
+                                            src="{{ asset('images/logo-usd.svg') }}" /> {{ $job->salary }}
+                                        P.A.</span></h6>
+                                </li>
+                                <li class="mt-2">
+                                    <span class="sub-info"><img class="job-icon"
+                                            src="{{ asset('images/location-icon.svg') }}" /> {{ $job->location }}</span>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col-md-4 text-center">
-                            <h2 class="job-title-header">{{ $job->title }}</h2>
-                            <h5><span class="primary-color">Location : </span>{{ $job->location->name }}</h5>
-                            <h5><span class="primary-color">Job Type : </span>{{ $job->employment_type }}</h5>
-                            {{-- <h5><span class="primary-color">Last Date For Apply : </span>30-Nov-2025</h5> --}}
-                        </div>
-                        <div class="col-md-4 text-center align-self-center">
-                            <a href="{{ $job->job_link }}" target="_blank" title="Apply Now"><button class="btn btn-success">APPLY NOW</button></a>
+                        <div class="col-md-4 text-end align-self-center">
+                             <img class="jd-logo" src="{{ asset($job->company->logo) }}"/>
                         </div>
                     </div>
+
+                    <hr class="mt-0">
+                    <ul class="job-description-info">
+                        <li>
+                            <span class="sub-info">Posted : <strong>{{ $job->created_at }}</strong></span> | 
+                            {{-- <span class="sub-info">Openings : <strong>8</strong></span> | 
+                            <span class="sub-info">Applications : <strong>43+</strong></span> --}}
+                        </li>
+                    </ul>
+                    <div class="col-12 align-self-center">
+                        <a href="{{ $job->job_link }}" target="_blank" title="Apply Now"><button class="btn btn-success">APPLY NOW</button></a>
+                    </div>
+
                 </div>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 mx-auto">
+                <div class="landing-screen">
+                    <div class="job-view-area mx-auto">
                         <div class="featured-card mt-3">
                             <div class="featured-card-header landing-job">
-                                <h5 class="job-title">{{ $job->title }}</h5>
-                                {{-- <h6 class="mb-0">Prefferred Immediate joiner - max 15day</h6> --}}
+                                <h5 class="job-title">Job Description</h5>
+                                <h6 class="sub-info mt-2 mb-0">{{ $job->title }}</h6>
                             </div>
                             <div class="featured-card-body">
                                 <ul class="job-description-info">
                                     <li>
-                                        <h6 class="featured-tile">No of Positions : <span class="sub-info">{{ $job->positions }}</span></h6>
+                                        <h6 class="featured-tile">Location : <span class="sub-info">{{ $job->location }}</span></h6>
                                     </li>
                                     <li>
                                         <h6 class="featured-tile">Required Experience : <span class="sub-info">{{ $job->experience_required }}</span></h6>
@@ -79,25 +108,48 @@
 
                 @if ($relatedJobs->count() > 0)
                 <h2 class="text-center">Other Jobs at {{ $job->company->name }}</h2>
-                <div class="row mt-3">
+                <div class="row">
                     @foreach ($relatedJobs as $rjob)
-                    <div class="col-md-3">
-                        <a href="{{ route('landing.job.show', $rjob->id) }}" class="text-decoration-none">
-                        <div class="featured-card">
-                            <div class="featured-card-header">
-                            <img src="{{ asset($rjob->company->logo) }}" alt="Company Logo" width="90" class="me-3 rounded">
-                                <span class="job-type-label">{{ $rjob->employment_type }}</span>
+                    <div class="col-md-6">
+                        <div class="container company-profile card featured-card p-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="job-title-header mb-0">{{ $rjob->title }}</h2>
+                                    <ul class="job-description-info">
+                                        <li class="mb-2">
+                                            <h6 class="featured-tile">{{ $rjob->company->name ?? 'N/A' }} | <span
+                                                    class="mx-1">
+                                                     <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                                    <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                                    <img class="job-icon" src="{{ asset('images/rating-star.svg') }}">
+                                                    <img class="job-icon" src="{{ asset('images/half-star.svg') }}">
+                                                    <img class="job-icon" src="{{ asset('images/empty-star.svg') }}">
+                                                    3.5</span> | <span class="sub-info">203 Reviwes</span></h6>
+                                        </li>
+                                        <li>
+                                            <span class="sub-info"><img class="job-icon"
+                                                    src="{{ asset('images/office-bag-icon.svg') }}" /> 5 - 10 years</span> | <span
+                                                class="sub-info"><img class="job-icon rupee-icon"
+                                                    src="{{ asset('images/logo-usd.svg') }}" /> {{ $job->salary }}
+                                                P.A.</span></h6>
+                                        </li>
+                                        <li class="mt-2">
+                                            <span class="sub-info"><img class="job-icon"
+                                                    src="{{ asset('images/location-icon.svg') }}" /> {{ $job->location }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="featured-card-body">
-                                <h6 class="featured-tile">{{ $rjob->title }}</h6>
-                                <span class="featured-sub-title">{{ $rjob->company->name ?? 'N/A' }}, {{ $rjob->location->name ?? 'N/A' }}</span>
-                            </div>
-                            <div class="featured-footer">
-                                <span class="design-label">{{ $rjob->category->name ?? 'N/A' }}</span>
+                            <hr class="mt-0">
+                            <ul class="job-description-info">
+                                <li>
+                                    <span class="sub-info">Posted : <strong>{{ $job->created_at }}</strong></span> | 
+                                </li>
+                            </ul>
+                            <div class="col-12 align-self-center">
+                                <a href="{{ route('landing.job.show', $rjob->id) }}" class="text-decoration-none"><button class="btn btn-success">APPLY NOW</button></a>
                             </div>
                         </div>
-                        </a>
-
                     </div>
                     @endforeach
                 </div>

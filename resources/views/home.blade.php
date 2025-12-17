@@ -5,7 +5,7 @@
         @include('auth.topmenu')
         <div class="min-content-section">
             <div class="home-banner-section pt-4">
-                <div class="container">
+                <div class="container pos-rel">
                     <div class="row">
                         <div class="col-md-6 home my-auto">
                             <h2 class="banner-main-title">Find a job that suits your interest & skills.</h2>
@@ -30,14 +30,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 text-center">
+                        <div class="col-md-6 text-center pos-rel">
                             <img src="{{ asset('images/home-banner-gif.gif') }}" class="w-80 mx-auto"
                                 alt="home banner gif" />
+                            <div class="pacth"></div>
                         </div>
-
                     </div>
-                </div>
-                <div class="banner-sub-section mt-4">
+
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
@@ -46,7 +45,7 @@
                                         <img src="{{ asset('images/top-companies-icon.svg') }}" alt="Top Copanies Icon" />
                                     </div>
                                     <div class="content-space">
-                                        <h6 class="sub-title">Top Companies</h6>
+                                        <h6 class="sub-title">Top Companies Hiring</h6>
                                         <p class="label-content">{{ $companies->count()}} Companies</p>
                                     </div>
                                 </div>
@@ -58,7 +57,7 @@
                                     </div>
                                     <div class="content-space">
                                         <h6 class="sub-title">Best Job Opportunity</h6>
-                                        <p class="label-content">{{ $totalPositions }} Job vacancies</p>
+                                        <p class="label-content">1234 Job vacancies</p>
                                     </div>
                                 </div>
                             </div>
@@ -76,10 +75,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="banner-sub-section my-4">
+                    @include('auth.trusted-companies') 
+                </div>
             </div>
         </div>
         <div class="container">
-           @include('auth.trusted-companies') 
             <div class="flow-chart-web mb-4">
                 <div class="col-12 flow-chat-section">
                     <h2 class="banner-main-title mb-5 text-center">How Skill Launches work</h2>

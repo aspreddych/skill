@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
-use App\Models\JobLocation;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -17,20 +17,24 @@ class CompanyController extends Controller
 
     public function create()
     {
-        $locations = JobLocation::all();
-        return view('admin.companies.create',compact('locations'));
+        return view('admin.companies.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:companies,name',
+            'location' => 'required',
             'email' => 'nullable|email',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'overview' => 'required',
+            'overview' => 'nullable',
         ]);
 
         $data = $request->except('logo');
+        
+        // Capitalize every word in location
+        $data['location'] = Str::title(trim($request->location));
+        $data['name'] = Str::title(trim($request->name));
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
@@ -46,8 +50,7 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
-        $locations = JobLocation::all();
-        return view('admin.companies.edit', compact('company','locations'));
+        return view('admin.companies.edit', compact('company'));
     }
 
     public function update(Request $request, Company $company)

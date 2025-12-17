@@ -8,12 +8,6 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Number of Positions</label>
-            <input type="number" name="positions" class="form-control" min="1"
-                value="{{ old('positions', $job->positions ?? 1) }}" required>
-        </div>
-
-        <div class="mb-3">
             <label class="form-label">Company</label>
             <select name="company_id" class="form-control" required>
                 <option value="">Select Company</option>
@@ -78,15 +72,7 @@
 
         <div class="mb-3">
             <label class="form-label">Location</label>
-            <select name="location_id" class="form-control" required>
-                <option value="">Select Location</option>
-                @foreach ($locations as $location)
-                    <option value="{{ $location->id }}" 
-                        {{ old('location_id', $job->location_id ?? '') == $location->id ? 'selected' : '' }}>
-                        {{ $location->name }}
-                    </option>
-                @endforeach
-            </select>
+            <input type="text" name="location" class="form-control" placeholder="Location" value="{{ old('location', $job->location ?? '') }}" required>
         </div>
 
         <div class="mb-3">

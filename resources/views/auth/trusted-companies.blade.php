@@ -1,4 +1,4 @@
-<div class="trusted-companies my-4">
+<div class="container trusted-companies my-4">
     <marquee direction="left" scrollamount="15" onmouseover="this.stop()" onmouseout="this.start()">
         <ul>
             <li>

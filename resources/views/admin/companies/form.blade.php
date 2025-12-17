@@ -22,15 +22,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Location</label>
-        <select name="location_id" class="form-control" required>
-            <option value="">Select Location</option>
-            @foreach ($locations as $location)
-                <option value="{{ $location->id }}" 
-                    {{ old('location_id', $company->location_id ?? '') == $location->id ? 'selected' : '' }}>
-                    {{ $location->name }}
-                </option>
-            @endforeach
-        </select>
+        <input type="text" name="location" class="form-control" placeholder="Location" value="{{ old('location', $company->location ?? '') }}" required>
     </div>
 
     <div class="col-md-6 mb-3">
