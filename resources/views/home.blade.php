@@ -484,73 +484,29 @@
                         <h6 class="small-header">Top Recruiters</h6>
                         <h4 class="recruitment-experts-title black-title pb-4 text-center">Recruitment Experts</h4>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/google-expert.svg') }}" alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">Google</h6>
-                                        <p class="label-content">16189 Jobs</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/amazon-expert.svg') }}" alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">Amazon</h6>
-                                        <p class="label-content">3645 Jobss</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/master-card-expert.svg') }}"
-                                            alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">Mastercard</h6>
-                                        <p class="label-content">1489 Jobs</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/adobe-expert.svg') }}" alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">Adobe</h6>
-                                        <p class="label-content">675 Jobs</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/nvidia-expert.svg') }}" alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">nVIDIA</h6>
-                                        <p class="label-content">1231 Jobs</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="home-banner-label">
-                                    <div class="label-icon top-copanies-icon-bg">
-                                        <img src="{{ asset('images/wipro-expert.svg') }}" alt="recruitment expert icon" />
-                                    </div>
-                                    <div class="content-space">
-                                        <h6 class="sub-title">Wipro</h6>
-                                        <p class="label-content">16112589 Jobs</p>
-                                    </div>
-                                </div>
-                            </div>
+                           @foreach ($companies as $company)
+    <div class="col-md-4 d-flex">
+        <div class="home-banner-label d-flex align-items-center w-100 h-100">
+            
+            <div class="label-icon top-copanies-icon-bg">
+                <img src="{{ url('/uploads/companies/' . basename($company->logo)) }}"
+                     alt="{{ $company->name }}"
+                     class="img-fluid" />
+            </div>
+
+            <div class="content-space">
+                <h6 class="sub-title text-truncate-2">
+                    {{ $company->name }}
+                </h6>
+                <p class="label-content mb-0">
+                    {{ $company->active_jobs_count }} Jobs
+                </p>
+            </div>
+
+        </div>
+    </div>
+@endforeach
+
                             <div class="col-md-12 text-center my-4">
                                 <span class="view-btn f-center">
                                     <button class="btn">Browse All Comapnies <img

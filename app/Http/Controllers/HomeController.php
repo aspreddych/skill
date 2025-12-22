@@ -11,7 +11,19 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $companies = Company::all();
+        // Companies with active job count (highest first)
+        $companies = Company::withCount([
+                'jobPosts as active_jobs_count' => function ($query) {
+                    $query->where('status', 'active');
+                }
+            ])
+            ->whereHas('jobPosts', function ($query) {
+                $query->where('status', 'active');
+            })
+            ->orderByDesc('active_jobs_count')
+            ->take(6)
+            ->get(['id', 'name', 'logo']);
+
         $categories = JobCategory::withCount([
                 'jobs as active_jobs_count' => function ($query) {
                     $query->where('status', 'active');

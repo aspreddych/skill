@@ -1,8 +1,9 @@
-@component('mail::message')
-# Job Upload Completed 🎉
+<h2>Bulk Job Upload Completed</h2>
 
-Your job data has been successfully imported into the system.
+<p><strong>Total Jobs:</strong> {{ $upload->total_rows }}</p>
+<p><strong>Successfully Uploaded:</strong> {{ $upload->processed_rows }}</p>
+<p><strong>Failed:</strong> {{ $upload->failed_rows }}</p>
 
-Thanks for your patience,  
-{{ config('app.name') }}
-@endcomponent
+<p>Status: <b>{{ strtoupper($upload->status) }}</b></p>
+
+<p>Thank you,<br>Skill Launches Team</p>

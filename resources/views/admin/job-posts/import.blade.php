@@ -38,7 +38,7 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form action="{{ route('jobs.import') }}" method="POST" enctype="multipart/form-data" class="mt-3">
+                    <form action="{{ route('jobs.upload') }}" method="POST" enctype="multipart/form-data" class="mt-3">
                         @csrf
                         <div class="mb-3">
                             <label>Email Address to Notify:</label>
@@ -55,6 +55,19 @@
                   </div>
                 </div>
               </div>
+
+              @if(session('upload_id'))
+                <div class="progress mt-3">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                        id="uploadProgress"
+                        style="width:0%">
+                        0%
+                    </div>
+                </div>
+
+                <p class="mt-2" id="progressText"></p>
+              @endif
+
             </div>
           </div>
         @include('admin.copyright')
@@ -64,5 +77,35 @@
       <!-- page-body-wrapper ends -->
     </div>
     @include('admin.footer-scripts')
+
+@if(session('upload_id'))
+<script>
+let uploadId = {{ session('upload_id') }};
+let interval = setInterval(fetchProgress, 2000);
+
+function fetchProgress() {
+    fetch(`/admin/job-upload/${uploadId}/progress`)
+        .then(res => res.json())
+        .then(data => {
+            let percent = data.total_rows > 0
+                ? Math.round((data.processed_rows / data.total_rows) * 100)
+                : 0;
+
+            document.getElementById('uploadProgress').style.width = percent + '%';
+            document.getElementById('uploadProgress').innerText = percent + '%';
+
+            document.getElementById('progressText').innerText =
+                `Processed: ${data.processed_rows}/${data.total_rows} | Failed: ${data.failed_rows}`;
+
+            if (data.status === 'completed') {
+                clearInterval(interval);
+                document.getElementById('progressText').innerText += ' ✅ Completed';
+            }
+        })
+        .catch(() => clearInterval(interval));
+}
+</script>
+@endif
+
   </body>
 </html>
