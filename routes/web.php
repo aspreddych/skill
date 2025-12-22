@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobImportController;
+use App\Http\Controllers\BulkJobController;
+use App\Models\JobUpload;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,6 +30,25 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/jobs/import', [JobImportController::class, 'showImportForm'])->name('jobs.import.form');
     Route::post('/admin/jobs/import', [JobImportController::class, 'import'])->name('jobs.import');
+
+    Route::get('/admin/jobs/upload', [BulkJobController::class, 'create']);
+    Route::post('/admin/jobs/upload', [BulkJobController::class, 'store'])->name('jobs.upload');
+    Route::get('/admin/job-upload/{id}/progress', function ($id) {
+            return JobUpload::select(
+                'total_rows',
+                'processed_rows',
+                'failed_rows',
+                'status'
+            )->findOrFail($id);
+        });
+
+    // Bulk Upload list page
+    Route::get('/admin/job-uploads', [BulkJobController::class, 'index'])->name('job.uploads.list');
+    Route::get('/admin/job-uploads/{upload}/failures', [BulkJobController::class, 'failures'])->name('job.upload.failures');
+
+    Route::post('/admin/job-uploads/{upload}/retry-failures',[BulkJobController::class, 'retryFailures'])->name('job.upload.retry');
+    Route::get('/admin/job-uploads/{upload}/failures/download',[BulkJobController::class, 'downloadFailures'])->name('job.upload.failures.download');
+
 });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
