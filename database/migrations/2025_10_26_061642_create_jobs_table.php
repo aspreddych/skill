@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('experience_required');  
             $table->longText('skills');
             $table->longText('responsibilities');
+            $table->date('expiry_date')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
