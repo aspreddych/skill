@@ -15,6 +15,9 @@
                     <a href="{{ url('/contactus') }}" class="nav-link">Contact Us</a>
                 </li>
                 <li>
+                    <a href="{{ url('/job-trends') }}" class="nav-link">Job Trends</a>
+                </li>
+                <li>
                     <a href="#" class="nav-link">Pricing</a>
                 </li>
                 <li>

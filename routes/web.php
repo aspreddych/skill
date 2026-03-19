@@ -9,6 +9,7 @@ use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobImportController;
 use App\Http\Controllers\BulkJobController;
+use App\Http\Controllers\TrendController;
 use App\Models\JobUpload;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -74,3 +75,7 @@ Route::get('/terms-and-conditions', function () {
 });
 
 Route::resource('job-categories', JobCategoryController::class);
+
+// job trends
+Route::get('/job-trends', [TrendController::class, 'index']);
+Route::get('/job-trends/data', [TrendController::class, 'getData']);
