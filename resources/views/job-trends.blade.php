@@ -160,9 +160,9 @@
                 </div>
 
                 <div class="jt-presets" id="presets">
-                    <button class="jt-preset" data-p="today">Today</button>
+                    <button class="jt-preset active" data-p="today">Today</button>
                     <button class="jt-preset" data-p="yesterday">Yesterday</button>
-                    <button class="jt-preset active" data-p="week">Last week</button>
+                    <button class="jt-preset " data-p="week">Last week</button>
                     <button class="jt-preset" data-p="month">This month</button>
                     <button class="jt-preset" data-p="quarter">Quarter</button>
                     <button class="jt-preset" data-p="6months">6 months</button>
