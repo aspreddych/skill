@@ -16,8 +16,20 @@ class JobPost extends Model
     public function company() {
         return $this->belongsTo(Company::class);
     }
+    
 
     public function category() {
         return $this->belongsTo(JobCategory::class, 'category_id');
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($job) {
+            $job->expiry_date = now()->addDays(5);
+        });
+    }
+
+    protected $casts = [
+        'expiry_date' => 'date',
+    ];
 }

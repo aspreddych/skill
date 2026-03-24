@@ -134,6 +134,7 @@ class BulkJobUploadJob implements ShouldQueue
                         'skills' => $row['skills'],
                         'responsibilities' => $row['responsibilities'],
                         'status' => $row['status'] ?? 'active',
+                        'expiry_date' => now()->addDays(5)->format('Y-m-d'),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
